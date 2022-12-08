@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from './curso';
 import { CursoService } from './curso.service';
-import { NgForm } from '@angular/forms';
-
 
 @Component({
   selector: 'app-curso',
@@ -44,8 +42,7 @@ export class CursoComponent implements OnInit {
         this.vetor = res;
 
         //limpar os atributos
-        this.curso.nomeCurso
-        this.curso.valorCurso
+        this.curso = new Curso()
 
         //atualizar listagem
         this.selecao();
