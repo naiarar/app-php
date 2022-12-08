@@ -13,15 +13,25 @@ export class CursoService {
   url = "http://localhost/api/php/";
 
   //Vetor de cursos
-  vetor: Curso[];
+  vetor!: Curso[];
 
   //Construtor
   constructor(private http: HttpClient) { }
 
   obterCursos(): Observable<Curso[]> {
     return this.http.get(this.url + "listar").pipe(
-      map((res) => {
+      map((res: any) => {
+        console.log(res)
         this.vetor = res['cursos'];
+        return this.vetor;
+      })
+    )
+  }
+
+  cadastrarCurso(c: Curso): Observable<Curso[]> {
+    return this.http.post(this.url + 'cadastrar', { cursos: c }).pipe(
+      map((res: any) => {
+        this.vetor.push(res['cursos']);
         return this.vetor;
       })
     )
