@@ -1,4 +1,17 @@
-<button (click)="cadastro()">Selecionar</button>
-<button (click)="alterar()">Alterar</button>
-<button (click)="cadastro()">Cadastrar</button>
-<button (click)="remover()">Remover</button>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome Curso</th>
+            <th scope="col">Valor Curso</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let v of vetor">
+
+            <td>{{v.idCurso}}</td>
+            <td>{{v.nomeCurso}}</td>
+            <td>{{v.valorCurso |currency: "BRL"}}</td>
+        </tr>
+    </tbody>
+</table>
