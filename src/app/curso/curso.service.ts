@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -28,29 +28,18 @@ export class CursoService {
     )
   }
 
-  cadastrarCurso(c: Curso): Observable<Curso[]> {
-    return this.http.post(this.url + 'cadastrar', { cursos: c }).pipe(
-      map((res: any) => {
-        this.vetor.push(res['cursos']);
-        return this.vetor;
-      })
-    )
+  cadastrarCurso(c: Curso): Promise<Response> {
+    return fetch(this.url + 'cadastrar', {
+      body: JSON.stringify({ cursos: c }),
+      method: 'POST'
+    })
   }
 
-  removerCurso(c: Curso): Observable<Curso[]> {
-
-    if (c.idCurso) {
-      const params = new HttpParams().set("idCurso", c.idCurso.toString());
-      return this.http.delete(this.url + 'excluir', { params: params })
-        .pipe(map((res) => {
-          const filtro = this.vetor.filter((curso) => {
-            return curso['idCurso'] !== c.idCurso;
-          });
-          return this.vetor = filtro;
-        }))
-    }
-
-    return this.obterCursos();
+  removerCurso(c: Curso): Promise<Response> {
+    return fetch(this.url + 'remover', {
+      body: JSON.stringify({ cursos: c }),
+      method: 'POST'
+    })
 
   }
 }

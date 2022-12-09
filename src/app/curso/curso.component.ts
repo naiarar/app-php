@@ -36,30 +36,37 @@ export class CursoComponent implements OnInit {
 
 
   cadastro() {
-    this.curso_servico.cadastrarCurso(this.curso).subscribe(
-      (res: Curso[]) => {
+    this.curso_servico.cadastrarCurso(this.curso)
+      .then(() => {
         //adc dados ao vetor
-        this.vetor = res;
+        // this.vetor = res;
 
-        //limpar os atributos
+        // //limpar os atributos
         this.curso = new Curso()
 
         //atualizar listagem
         this.selecao();
       }
-    )
+      )
 
   }
 
   remover() {
-    this.curso_servico.removerCurso(this.curso).subscribe(
-      (res: Curso[]) => {
-        this.vetor = res;
+    this.curso_servico.removerCurso(this.curso)
+      .then(() => {
+
 
         this.curso = new Curso()
 
       }
-    )
+      )
+  }
+
+  selecionarCurso(c: Curso) {
+    this.curso.idCurso = c.idCurso;
+    this.curso.nomeCurso = c.nomeCurso;
+    this.curso.valorCurso = c.valorCurso;
+
   }
 
 

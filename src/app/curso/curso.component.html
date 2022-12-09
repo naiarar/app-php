@@ -1,17 +1,33 @@
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome Curso</th>
-            <th scope="col">Valor Curso</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let v of vetor">
+<div class="main">
+    <form class="form">
+        <p><label><b>Curso</b></label>
+            <input type="text" name="nome" [(ngModel)]="curso.nomeCurso">
+        </p>
 
-            <td>{{v.idCurso}}</td>
-            <td>{{v.nomeCurso}}</td>
-            <td>{{v.valorCurso |currency: "BRL"}}</td>
-        </tr>
-    </tbody>
-</table>
+
+        <p><label for=""><b>Valor</b></label>
+            <input type="text" name="valorCurso" [(ngModel)]="curso.valorCurso">
+        </p> <button (click)="cadastro()">Cadastrar</button>
+        <button>Alterar</button>
+        <button (click)="remover()">Excuir</button>
+    </form>
+
+    <table class="table" border="1">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome Curso</th>
+                <th scope="col">Valor Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let v of vetor">
+
+                <td>{{v.idCurso}}</td>
+                <td>{{v.nomeCurso}}</td>
+                <td>{{v.valorCurso }}</td>
+                <td><button (click)="selecionarCurso(v)">Selecionar Curso</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
